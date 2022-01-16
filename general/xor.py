@@ -29,3 +29,17 @@ k3 = xor_bytes(bytes.fromhex(k2_k3), k2)
 flag = xor_bytes(xor_bytes(bytes.fromhex(flag_k123), k1), xor_bytes(k2, k3))
 
 print(flag)
+
+# Favorite Byte
+print("Favorite byte:")
+
+b = bytes.fromhex("73626960647f6b206821204f21254f7d694f7624662065622127234f726927756d")
+res = ""
+
+for c in range(256):
+    for s in b:
+        res += chr(c ^ s)
+    if res.startswith("crypto"):
+        print(res)
+        break
+    res = ""
