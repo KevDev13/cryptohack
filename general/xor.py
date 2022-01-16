@@ -16,7 +16,7 @@ print(s)
 def xor_bytes(b1, b2):
     return bytes(a ^ b for a, b in zip(b1, b2))
 
-print("XOR Properties:")
+print("\nXOR Properties:")
 
 k1_hex = "a6c8b6733c9b22de7bc0253266a3867df55acde8635e19c73313"
 k2_k1 = "37dcb292030faa90d07eec17e3b1c6d8daf94c35d4c9191a5e1e"
@@ -31,7 +31,7 @@ flag = xor_bytes(xor_bytes(bytes.fromhex(flag_k123), k1), xor_bytes(k2, k3))
 print(flag)
 
 # Favorite Byte
-print("Favorite byte:")
+print("\nFavorite byte:")
 
 b = bytes.fromhex("73626960647f6b206821204f21254f7d694f7624662065622127234f726927756d")
 res = ""
@@ -43,3 +43,24 @@ for c in range(256):
         print(res)
         break
     res = ""
+
+# You either know, XOR you don't
+print("\nYou either know, XOR you don't")
+
+e = bytes.fromhex("0e0b213f26041e480b26217f27342e175d0e070a3c5b103e2526217f27342e175d0e077e263451150104")
+start = b"crypto{"
+e_partial = e[:len(start)]
+print(len(e_partial))
+key = xor_bytes(start, e_partial)
+key = key.decode("utf-8")
+key += "y" # found this manually
+print("Key: " + key)
+key = bytes(key, "utf-8")
+d = ""
+idx = 0
+for b in e:
+    d += chr(b ^ key[idx])
+    idx += 1
+    if idx >= len(key):
+        idx = 0
+print(d)
