@@ -50,7 +50,6 @@ print("\nYou either know, XOR you don't")
 e = bytes.fromhex("0e0b213f26041e480b26217f27342e175d0e070a3c5b103e2526217f27342e175d0e077e263451150104")
 start = b"crypto{"
 e_partial = e[:len(start)]
-print(len(e_partial))
 key = xor_bytes(start, e_partial)
 key = key.decode("utf-8")
 key += "y" # found this manually
@@ -64,3 +63,13 @@ for b in e:
     if idx >= len(key):
         idx = 0
 print(d)
+
+# Lemur XOR
+print("\nLemur XOR")
+from PIL import Image, ImageChops
+
+lemur = Image.open("lemur.png")
+flag = Image.open("flag.png")
+both = ImageChops.add(ImageChops.subtract(lemur, flag), ImageChops.subtract(flag, lemur))
+both.save("xor.png")
+print("Check xor.png for the flag!")
