@@ -9,8 +9,8 @@
 
 # Bytes and Big Ints
 
-# from Crypto.Util.number import *
+from Crypto.Util.number import *
 
-# msg_as_int = 11515195063862318899931685488813747395775516287289682636499965282714637259206269
-# msg_bytes = long_to_bytes(msg_as_int)
-# print(msg_bytes)
+msg_as_int = 11515195063862318899931685488813747395775516287289682636499965282714637259206269
+msg_bytes = long_to_bytes(msg_as_int)
+print(msg_bytes)
