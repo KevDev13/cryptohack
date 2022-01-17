@@ -23,8 +23,16 @@ def ext_gcd(a, b):
 
     return old_s, old_t
 
-
 print("\nExtended GCD:")
 p = 26513
 q = 32321
 print(ext_gcd(p, q))
+
+# Modular Arithmetic 1
+print("\nModular Arithmetic 1")
+print(11 % 6)
+print(8146798528947 % 17)
+
+# Modular Arithmetic 2
+print("\nModular Arithmetic 2")
+print("done by hand... Fermat's Little Theorem!")
