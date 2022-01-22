@@ -36,3 +36,24 @@ print(8146798528947 % 17)
 # Modular Arithmetic 2
 print("\nModular Arithmetic 2")
 print("done by hand... Fermat's Little Theorem!")
+
+# Modular Inverting
+print("\nModular Inverting")
+
+def mod_power(x, y, m):
+    if y == 0:
+        return 1
+    p = mod_power(x, y // 2, m) % m
+    p = (p * p) % m
+    if y % 2 == 0:
+        return p
+    else:
+        return (x * p) % m
+
+def mod_inverse(d, p):
+    if gcd(d, p) != 1:
+        print("inverse doesn't exist")
+    else:
+        return mod_power(d, p-2, p)
+        
+print(mod_inverse(3, 13))
